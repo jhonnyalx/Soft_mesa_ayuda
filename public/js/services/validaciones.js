@@ -9,12 +9,29 @@ var validCedula={
     ok:""
   }
 
-  validaciones.enviarEmail=function(usuario,token){
+//valida el nuero de cedula
+validaciones.validarCedula=function(cedula){
+  var expresion = /([A-z])/g;
+  var hallado = cedula.replace(expresion,'').trim();    
+  cedula=hallado;
+  var okcedula = validaciones.validarLongitudCedula(cedula);
+  cedula=okcedula.cedulaFinal;
+  if(okcedula.ok == true){
+    if(cedula!=undefined){      
+      return "Cedula Correcta";
+    }
+  }else{
+    return "Cedula Incorrecta";
+  }
+}
+
+
+validaciones.enviarEmail=function(usuario,token){
   
     configMensaje(usuario,token);
   }
 
-  validaciones.validarLongitudCedula=function (cedula){
+validaciones.validarLongitudCedula=function (cedula){
     
   var cad = cedula;
   
@@ -182,10 +199,7 @@ var validCedula={
   
   
    
-  }  
-
-
-
+  }
 
   module.exports=validaciones
 
