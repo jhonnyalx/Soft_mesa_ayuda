@@ -9,7 +9,6 @@ controllerWatson.postEnviarMensajeWex =async(req,res)=>{
 function decisionWex(data){
   switch (data.bandera) {
     case "AUTENTIFICACION":
-
       break;
     case "LISTA_CATEGORIAS":
        return listarCategoria(data);
@@ -19,7 +18,8 @@ function decisionWex(data){
 }
 
 function listarCategoria(){
-  return "pruebas";
+  var obj={"respuesta":"pruebas"};
+  return obj;
 }
 
 
