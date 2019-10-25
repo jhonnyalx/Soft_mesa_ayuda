@@ -1,8 +1,9 @@
 const controllerWatson={};
 var documentos=require('../services/leerDocumento');
-
+var validaciones=require('../services/validaciones');
 
 controllerWatson.postEnviarMensajeWex =async(req,res)=>{  
+  console.log(req.body)
   var json={"respuesta":await decisionWex(req.body)};
     res.send(json);
 }
@@ -10,9 +11,9 @@ controllerWatson.postEnviarMensajeWex =async(req,res)=>{
 function decisionWex(data){
   switch (data.bandera) {
     case "AUTENTIFICACION":
-      break;
+      return validaciones.validarCedula(data.input);
     case "LISTA_CATEGORIAS":
-       return documentos.leerReglasTecniseguros();
+       return documentos.leerReglasTecniseguros(data.input);
     default:
       break;
   }
