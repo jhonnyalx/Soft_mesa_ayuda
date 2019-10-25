@@ -1,9 +1,10 @@
 const controllerWatson={};
-
+var documentos=require('../services/leerDocumento');
 
 
 controllerWatson.postEnviarMensajeWex =async(req,res)=>{  
-    res.send(decisionWex(req.body));
+  var json={"respuesta":await decisionWex(req.body)};
+    res.send(json);
 }
 
 function decisionWex(data){
@@ -11,16 +12,13 @@ function decisionWex(data){
     case "AUTENTIFICACION":
       break;
     case "LISTA_CATEGORIAS":
-       return listarCategoria(data);
+       return documentos.leerReglasTecniseguros();
     default:
       break;
   }
 }
 
-function listarCategoria(){
-  var obj={"respuesta":"pruebas"};
-  return obj;
-}
+
 
 
 module.exports=controllerWatson;
