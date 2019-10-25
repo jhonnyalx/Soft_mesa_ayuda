@@ -4,6 +4,7 @@ const controllerWatson={};
 
 controllerWatson.postEnviarMensajeWex =async(req,res)=>{
   var mensaje=req.body.cedula;
+  console.log(req);
 
   
     var respuesta={mensaje:""};
