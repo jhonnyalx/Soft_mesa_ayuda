@@ -1,0 +1,14 @@
+{
+    "RED":[
+    {"PROBLEMA":"internet","soluciones":["SOLUCION1","SOLUCION2"]},
+    {"PROBLEMA":"chrome","soluciones":["SOLUCION1","SOLUCION2"]}
+    ],
+    "HARDWARE":[
+    {"PROBLEMA":"impresora","soluciones":["SOLUCION1","SOLUCION2"]},
+    {"PROBLEMA":"monitor","soluciones":["SOLUCION1","SOLUCION2"]}
+    ],
+    "SOFTWARE":[
+    {"PROBLEMA":"word","soluciones":["SOLUCION1","SOLUCION2"]},
+    {"PROBLEMA":"excel","soluciones":["SOLUCION1","SOLUCION2"]}
+    ]
+}
