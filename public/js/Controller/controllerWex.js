@@ -12,7 +12,7 @@ function decisionWex(data){
     case "AUTENTIFICACION":
       return validaciones.validarCedula(data.input);
     case "LISTA_CATEGORIAS":
-       return documentos.leerReglasTecniseguros();
+       return documentos.leerReglasTecniseguros(data.input);
     default:
       break;
   }

@@ -1,4 +1,4 @@
-const configMensaje = require('../js/mail');
+const configMensaje = require('../services/mail');
 var fs=require("fs");
 var validaciones={};
 
