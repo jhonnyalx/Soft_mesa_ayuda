@@ -3,6 +3,7 @@ var documentos=require('../services/leerDocumento');
 var validaciones=require('../services/validaciones');
 
 controllerWatson.postEnviarMensajeWex =async(req,res)=>{  
+  console.log(req.body)
   var json={"respuesta":await decisionWex(req.body)};
     res.send(json);
 }
