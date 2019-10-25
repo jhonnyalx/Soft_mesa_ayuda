@@ -4,10 +4,11 @@ const controllerWatson={};
 
 controllerWatson.postEnviarMensajeWex =async(req,res)=>{
   var mensaje=req.body.cedula;
+  console.log(req);
 
   
     var respuesta={mensaje:""};
-    if(mensaje=="1725002206"){
+    if(mensaje=="1725002207"){
       respuesta="esta bien";
     }else{
       respuesta.mensaje="esta mal";
