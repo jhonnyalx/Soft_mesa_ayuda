@@ -2,21 +2,25 @@ const controllerWatson={};
 
 
 
-controllerWatson.postEnviarMensajeWex =async(req,res)=>{
-  var mensaje=req.body.cedula;
-  console.log(req);
-console.log("IMPRESION POR CONSOLA");
-  
-    var respuesta={mensaje:""};
-    if(mensaje=="1725002207"){
-      respuesta="esta bien";
-    }else{
-      respuesta.mensaje="esta mal";
-    }
-
-    res.send({respuesta});
+controllerWatson.postEnviarMensajeWex =async(req,res)=>{  
+    res.send(decisionWex(req.body));
 }
 
+function decisionWex(data){
+  switch (data.bandera) {
+    case "AUTENTIFICACION":
+      break;
+    case "LISTA_CATEGORIAS":
+       return listarCategoria(data);
+    default:
+      break;
+  }
+}
+
+function listarCategoria(){
+  var obj={"respuesta":"pruebas"};
+  return obj;
+}
 
 
 module.exports=controllerWatson;
