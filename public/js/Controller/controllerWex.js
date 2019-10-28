@@ -42,7 +42,7 @@ async function consultaWatson(mensaje,contexto,req,id){
 
 ///webhook Assistant
 controllerWatson.postEnviarMensajeWex =async(req,res)=>{  
-  console.log(req.body)
+  //console.log(req.body)
   var json={"respuesta":await decisionWex(req.body)};
     res.send(json);
 }
@@ -59,18 +59,24 @@ function decisionWex(data){
 }
 
 function decisionNodos(watsonResultado){
-  /* var entidad=watsonResultado.entities;
+  var entidad=watsonResultado.entities;
   var intencion=watsonResultado.intents;
   console.log("=======");
   console.log(watsonResultado.context.system.dialog_stack);
   console.log(watsonResultado.output.nodes_visited[0]);
-  console.log(watsonResultado);
+  //console.log(watsonResultado);
   console.log("=======");
-  if (watsonResultado.context.system.dialog_stack=="node_8_1572026656546") {
+  //RECONOCE HARDWARE
+  if (watsonResultado.output.nodes_visited[0]=="node_1_1572035571673") {
     var categorias = documentos.leerReglasTecniseguros(watsonResultado.input.text);
-    var lista_categorias=[{response_type:"option",title:"Por favor seleccione una categoria😉😉",options: []}];
-    lista_categorias.options.push(categorias);
-  } */
+    var lista_categorias=[{response_type:"option",title:"Por favor seleccione una categoria 😉😉",options: []}];
+    for(var i in categorias){
+      lista_categorias[0].options.push(categorias[i]);
+    }
+    watsonResultado.output.generic=lista_categorias;
+  }else if (watsonResultado.output.nodes_visited[0]=="node_7_1572302557648") {
+    
+  }
 }
 
 module.exports=controllerWatson;
