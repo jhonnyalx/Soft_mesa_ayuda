@@ -9,7 +9,7 @@
     {
         "TIPO":"HARDWARE",
         "SOLUCIONES":[
-    {"PROBLEMA":"impresora","soluciones":["SOLUCION1","SOLUCION2"]},
+    {"PROBLEMA":"impresora","soluciones":["SOLUCION1 IMPRESORA","SOLUCION2 IMPRESORA"]},
     {"PROBLEMA":"monitor","soluciones":["SOLUCION1","SOLUCION2"]}
     ]},
     {

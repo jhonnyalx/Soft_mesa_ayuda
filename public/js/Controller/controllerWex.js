@@ -18,7 +18,7 @@ controllerWatson.postllamadaWatson =async(req,res)=>{
   var mensaje=req.body.texto;
   var id=req.body.id;
   //console.log(storage.getItem(id));
-  var context=new modelWatsonResultado(null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,false,null);
+  var context=new modelWatsonResultado(null);
     if(storage.getItem(id)!=undefined){
       context=storage.getItem(id);
     };
@@ -42,7 +42,7 @@ async function consultaWatson(mensaje,contexto,req,id){
 
 ///webhook Assistant
 controllerWatson.postEnviarMensajeWex =async(req,res)=>{  
-  console.log(req.body)
+  //console.log(req.body)
   var json={"respuesta":await decisionWex(req.body)};
     res.send(json);
 }
@@ -59,18 +59,38 @@ function decisionWex(data){
 }
 
 function decisionNodos(watsonResultado){
-  /* var entidad=watsonResultado.entities;
+  var entidad=watsonResultado.entities;
   var intencion=watsonResultado.intents;
   console.log("=======");
   console.log(watsonResultado.context.system.dialog_stack);
   console.log(watsonResultado.output.nodes_visited[0]);
-  console.log(watsonResultado);
+  //console.log(watsonResultado);
   console.log("=======");
-  if (watsonResultado.context.system.dialog_stack=="node_8_1572026656546") {
-    var categorias = documentos.leerReglasTecniseguros(watsonResultado.input.text);
-    var lista_categorias=[{response_type:"option",title:"Por favor seleccione una categoria😉😉",options: []}];
-    lista_categorias.options.push(categorias);
-  } */
+  //RECONOCE HARDWARE
+  if (watsonResultado.output.nodes_visited[0]=="node_1_1572035571673") {
+    for (var i in entidad){
+      if (entidad[i].entity == "TipoConsulta") {
+        var categorias = documentos.leerReglasTecniseguros(entidad[i].value);
+        var lista_categorias=[{response_type:"option",title:"Por favor seleccione una categoria 😉😉",options: []}];
+        for(var i in categorias){
+          lista_categorias[0].options.push(categorias[i]);
+        }
+      watsonResultado.output.generic=lista_categorias;    
+      }
+    }
+  }else if (watsonResultado.output.nodes_visited[0]=="node_7_1572302557648") {
+    for(var i in entidad){
+      if(entidad[i].entity == "TipoConsulta"){
+        var soluciones = documentos.listarSoluciones(entidad[i].value,watsonResultado.input.text);
+        var lista_soluciones=[];
+        for(var i in soluciones){
+          lista_soluciones.push({response_type:"text", text:soluciones[i].text});
+        }
+        console.log(lista_soluciones);
+        watsonResultado.output.generic=lista_soluciones[watsonResultado.context.contador];
+      }
+    }
+  }
 }
 
 module.exports=controllerWatson;
