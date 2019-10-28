@@ -13,7 +13,7 @@ var assistant = new watson.AssistantV1({
   url: credencialesWex.principal.wconv_url
 });
 
-//llamada watson
+//llamada watson decicionNodos
 controllerWatson.postllamadaWatson =async(req,res)=>{
   var mensaje=req.body.texto;
   var id=req.body.id;
@@ -22,12 +22,12 @@ controllerWatson.postllamadaWatson =async(req,res)=>{
     if(storage.getItem(id)!=undefined){
       context=storage.getItem(id);
     };
-    
     var resWatson=await consultaWatson(mensaje,context,req,id);
-    //await decisionDialogos(resWatson,req);
+    await decisionNodos(resWatson);
     //await telegram.enviarTexto(resWatson);
     res.send({resWatson});
 }
+
 async function consultaWatson(mensaje,contexto,req,id){
   var watsonPromise = util.promisify(assistant.message.bind(assistant));
   var conversacion = await watsonPromise.call(assistant, {
@@ -37,11 +37,10 @@ async function consultaWatson(mensaje,contexto,req,id){
   }); 
   storage.setItem(id, conversacion.context)
   //req.session.context=conversacion.context;
-
-  
   return conversacion;
 }
-///webhook
+
+///webhook Assistant
 controllerWatson.postEnviarMensajeWex =async(req,res)=>{  
   console.log(req.body)
   var json={"respuesta":await decisionWex(req.body)};
@@ -59,7 +58,19 @@ function decisionWex(data){
   }
 }
 
-
-
+function decisionNodos(watsonResultado){
+  /* var entidad=watsonResultado.entities;
+  var intencion=watsonResultado.intents;
+  console.log("=======");
+  console.log(watsonResultado.context.system.dialog_stack);
+  console.log(watsonResultado.output.nodes_visited[0]);
+  console.log(watsonResultado);
+  console.log("=======");
+  if (watsonResultado.context.system.dialog_stack=="node_8_1572026656546") {
+    var categorias = documentos.leerReglasTecniseguros(watsonResultado.input.text);
+    var lista_categorias=[{response_type:"option",title:"Por favor seleccione una categoria😉😉",options: []}];
+    lista_categorias.options.push(categorias);
+  } */
+}
 
 module.exports=controllerWatson;
