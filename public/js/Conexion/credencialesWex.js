@@ -4,7 +4,7 @@
 var tramos={
     principal:{
         wconv_version_date : '2018-09-20',
-        wconv_workspaceId : 'd7ff2b06-b0dd-429e-94e1-87e41812c99f',
+        wconv_workspaceId : '07864efe-ff25-4f3a-9e2d-dcfff22cad9e',
         wconv_apikey : 'dPVHWNmEXdRKlP2Q0-0MTXdboSeWfJ0yP5x4HehNUZYq',
         wconv_url : 'https://gateway.watsonplatform.net/assistant/api',
     },secundario:{

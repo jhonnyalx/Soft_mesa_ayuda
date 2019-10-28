@@ -18,12 +18,13 @@ controllerWatson.postllamadaWatson =async(req,res)=>{
   var mensaje=req.body.texto;
   var id=req.body.id;
   //console.log(storage.getItem(id));
-  var context=new modelWatsonResultado(null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,false,null);
+  var context=new modelWatsonResultado(null);
     if(storage.getItem(id)!=undefined){
       context=storage.getItem(id);
     };
     
     var resWatson=await consultaWatson(mensaje,context,req,id);
+    console.log(resWatson.context.system.dialog_stack);
     //await decisionDialogos(resWatson,req);
     //await telegram.enviarTexto(resWatson);
     res.send({resWatson});
