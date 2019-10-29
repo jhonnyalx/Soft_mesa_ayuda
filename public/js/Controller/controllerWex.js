@@ -91,9 +91,9 @@ function decisionNodos(watsonResultado){
     }
     if (watsonResultado.context.contador<(watsonResultado.context.soluciones.length)) {
       watsonResultado.output.generic[0]=watsonResultado.context.soluciones[watsonResultado.context.contador];
+      watsonResultado.output.generic[1]={response_type="text",text="Se soluciono tu problema??"};
     }else{
-      watsonResultado.output.generic[0].response_type="text";
-      watsonResultado.output.generic[0].text="GRACIAS";      
+      watsonResultado.output.generic[0]={response_type="text",text="GRACIAS"};
     }
   }
 }
