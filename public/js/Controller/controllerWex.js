@@ -13,7 +13,7 @@ var assistant = new watson.AssistantV1({
   url: credencialesWex.principal.wconv_url
 });
 
-//llamada watson
+//llamada watson decicionNodos
 controllerWatson.postllamadaWatson =async(req,res)=>{
   var mensaje=req.body.texto;
   var id=req.body.id;
@@ -22,13 +22,12 @@ controllerWatson.postllamadaWatson =async(req,res)=>{
     if(storage.getItem(id)!=undefined){
       context=storage.getItem(id);
     };
-    
     var resWatson=await consultaWatson(mensaje,context,req,id);
-    console.log(resWatson.context.system.dialog_stack);
-    //await decisionDialogos(resWatson,req);
+    await decisionNodos(resWatson);
     //await telegram.enviarTexto(resWatson);
     res.send({resWatson});
 }
+
 async function consultaWatson(mensaje,contexto,req,id){
   var watsonPromise = util.promisify(assistant.message.bind(assistant));
   var conversacion = await watsonPromise.call(assistant, {
@@ -38,13 +37,12 @@ async function consultaWatson(mensaje,contexto,req,id){
   }); 
   storage.setItem(id, conversacion.context)
   //req.session.context=conversacion.context;
-
-  
   return conversacion;
 }
-///webhook
+
+///webhook Assistant
 controllerWatson.postEnviarMensajeWex =async(req,res)=>{  
-  console.log(req.body)
+  //console.log(req.body)
   var json={"respuesta":await decisionWex(req.body)};
     res.send(json);
 }
@@ -60,7 +58,25 @@ function decisionWex(data){
   }
 }
 
-
-
+function decisionNodos(watsonResultado){
+  var entidad=watsonResultado.entities;
+  var intencion=watsonResultado.intents;
+  console.log("=======");
+  console.log(watsonResultado.context.system.dialog_stack);
+  console.log(watsonResultado.output.nodes_visited[0]);
+  //console.log(watsonResultado);
+  console.log("=======");
+  //RECONOCE HARDWARE
+  if (watsonResultado.output.nodes_visited[0]=="node_1_1572035571673") {
+    var categorias = documentos.leerReglasTecniseguros(watsonResultado.input.text);
+    var lista_categorias=[{response_type:"option",title:"Por favor seleccione una categoria 😉😉",options: []}];
+    for(var i in categorias){
+      lista_categorias[0].options.push(categorias[i]);
+    }
+    watsonResultado.output.generic=lista_categorias;
+  }else if (watsonResultado.output.nodes_visited[0]=="node_7_1572302557648") {
+    
+  }
+}
 
 module.exports=controllerWatson;
