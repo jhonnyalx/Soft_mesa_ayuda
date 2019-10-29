@@ -78,17 +78,22 @@ function decisionNodos(watsonResultado){
       watsonResultado.output.generic=lista_categorias;    
       }
     }
-  }else if (watsonResultado.output.nodes_visited[0]=="node_7_1572302557648") {
+  }else if (watsonResultado.output.nodes_visited[0]=="node_7_1572302557648" ||watsonResultado.output.nodes_visited[0]=="node_1_1572361442509") {
     for(var i in entidad){
       if(entidad[i].entity == "TipoConsulta"){
         var soluciones = documentos.listarSoluciones(entidad[i].value,watsonResultado.input.text);
         var lista_soluciones=[];
         for(var i in soluciones){
-          lista_soluciones.push({response_type:"text", text:soluciones[i].text});
+          lista_soluciones.push({response_type:"text", text:soluciones[i]});
         }
-        console.log(lista_soluciones);
-        watsonResultado.output.generic=lista_soluciones[watsonResultado.context.contador];
+        watsonResultado.context.soluciones = lista_soluciones;
       }
+    }
+    if (watsonResultado.context.contador<=(watsonResultado.context.soluciones.lenght()-1)) {
+      watsonResultado.output.generic=watsonResultado.context.soluciones[watsonResultado.context.contador]; 
+    }else{
+      watsonResultado.output.generic[0].response_type="text";
+      watsonResultado.output.generic[0].text="GRACIAS";      
     }
   }
 }

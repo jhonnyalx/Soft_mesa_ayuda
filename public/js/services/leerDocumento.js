@@ -36,7 +36,7 @@ validaciones.listarSoluciones= function(tipo,problema){
     if (data[i].TIPO == tipo.toUpperCase()) {
       for(var j in data[i].SOLUCIONES){
         if (data[i].SOLUCIONES[j].PROBLEMA==problema) {
-          obj.push(data[i].SOLUCIONES[j].soluciones)
+          obj=data[i].SOLUCIONES[j].soluciones;
         }
       }
     }
