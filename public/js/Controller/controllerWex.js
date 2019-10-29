@@ -99,55 +99,46 @@ function decisionNodos(watsonResultado){
 
 var jsonWatson={
   "watsonResultado": {
-      "intents": [
-          {
-              "intent": "finConversacion",
-              "confidence": 0.47068018913269044
-          }
-      ],
+      "intents": [],
       "entities": [
           {
-              "entity": "sys-number",
+              "entity": "TipoConsulta",
               "location": [
                   0,
-                  2
+                  8
               ],
-              "value": "10",
-              "confidence": 1,
-              "metadata": {
-                  "numeric_value": 10
-              }
+              "value": "hardware",
+              "confidence": 1
           }
       ],
       "input": {
-          "text": "10"
+          "text": "hardware"
       },
       "output": {
           "generic": [
               {
-                  "title": "Para problemas de hadware conozco sobre:",
-                  "options": [],
-                  "response_type": "option"
+                  "response_type": "text",
+                  "text": "GACIAS"
               }
           ],
           "text": [],
           "nodes_visited": [
-              "node_1_1572035571673"
+              "node_3_1572367833504"
           ],
           "log_messages": []
       },
       "context": {
           "cedula": 1725002206,
-          "prioridad": "10",
+          "prioridad": "1 Impacto empresarial crítico (la producción o el servicio están inactivos)",
           "tipo": "HARDWARE",
           "problema": null,
-          "soluciones": null,
-          "conversation_id": "a0592efb-f8ed-4df4-bb5b-1b402e98afa9",
+          "soluciones": [],
+          "conversation_id": "83e557ea-ee28-4ded-9b3b-b7d296245daa",
           "system": {
               "initialized": true,
               "dialog_stack": [
                   {
-                      "dialog_node": "root"
+                      "dialog_node": "node_3_1572367833504"
                   }
               ],
               "dialog_turn_counter": 7,
@@ -158,7 +149,7 @@ var jsonWatson={
                           0
                       ]
                   },
-                  "response_5_1572301770131": {
+                  "handler_1_1572285326655": {
                       "0": [
                           0
                       ]
@@ -168,18 +159,16 @@ var jsonWatson={
                           0
                       ]
                   }
-              },
-              "branch_exited": true,
-              "branch_exited_reason": "completed"
+              }
           },
           "docs": "doc:doc",
           "validacionCedula": {
               "respuesta": "Cedula Correcta"
-          }
+          },
+          "contador": 0
       }
   }
 }
-
 
 
 
