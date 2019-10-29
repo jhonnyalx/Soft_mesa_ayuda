@@ -89,8 +89,8 @@ function decisionNodos(watsonResultado){
         watsonResultado.context.soluciones = lista_soluciones;
       }
     }
-    if (watsonResultado.context.contador<=(watsonResultado.context.soluciones.lenght()-1)) {
-      watsonResultado.output.generic=watsonResultado.context.soluciones[watsonResultado.context.contador]; 
+    if (watsonResultado.context.contador<(watsonResultado.context.soluciones.length)) {
+      watsonResultado.output.generic[0]=watsonResultado.context.soluciones[watsonResultado.context.contador];
     }else{
       watsonResultado.output.generic[0].response_type="text";
       watsonResultado.output.generic[0].text="GRACIAS";      
