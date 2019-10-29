@@ -1,15 +1,44 @@
-{
-  "RED":[
-      {"ci":"12345679890","numticket":"342564","descripcion":"descrip","solucion":"solucion","Gravedad":"gravedad"},
-      {"ci":"12345679890","numticket":"342564","descripcion":"descrip","solucion":"solucion","Gravedad":"gravedad"}
-    ],
-    "HARDWARE":[
-      {"ci":"12345679890","numticket":"342564","descripcion":"descrip","solucion":"solucion","Gravedad":"gravedad"},
-      {"ci":"12345679890","numticket":"342564","descripcion":"descrip","solucion":"solucion","Gravedad":"gravedad"}
-    ],
-    "SOFTWARE":[
-      {"ci":"12345679890","numticket":"342564","descripcion":"descrip","solucion":"solucion","Gravedad":"gravedad"},
-      {"ci":"12345679890","numticket":"342564","descripcion":"descrip","solucion":"solucion","Gravedad":"gravedad"}
-    ]
-}
-
+[
+    {
+        "TIPO": "RED",
+        "RESULTADO": [
+            {
+                "ci": "12345679890",
+                "numticket": "342564",
+                "descripcion": "descrip",
+                "solucion": "solucion",
+                "Gravedad": "gravedad",
+                "nivelGravedad":"",
+                "fecha":""
+            }
+        ]
+    },
+    {
+        "TIPO": "HARDWARE",
+        "RESULTADO": [
+            {
+                "ci": "12345679890",
+                "numticket": "342564",
+                "descripcion": "descrip",
+                "solucion": "solucion",
+                "Gravedad": "gravedad",
+                "nivelGravedad":"",
+                "fecha":""
+            }
+        ]
+    },
+    {
+        "TIPO": "SOFTWARE",
+        "RESULTADO": [
+            {
+                "ci": "12345679890",
+                "numticket": "342564",
+                "descripcion": "descrip",
+                "solucion": "solucion",
+                "Gravedad": "gravedad",
+                "nivelGravedad":"",
+                "fecha":""
+            }
+        ]
+    }
+]

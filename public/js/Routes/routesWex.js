@@ -16,5 +16,6 @@ const validatePayloadMiddleware = (req,res,next)=>{
 
 router.post('/enviarMensaje', validatePayloadMiddleware,controllereWex.postEnviarMensajeWex);
 router.post('/llamadaWatson', validatePayloadMiddleware,controllereWex.postllamadaWatson);
+router.post('/pruebas', validatePayloadMiddleware,controllereWex.pruebas);
 
 module.exports=router;
