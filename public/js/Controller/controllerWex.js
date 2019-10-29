@@ -68,14 +68,28 @@ function decisionNodos(watsonResultado){
   console.log("=======");
   //RECONOCE HARDWARE
   if (watsonResultado.output.nodes_visited[0]=="node_1_1572035571673") {
-    var categorias = documentos.leerReglasTecniseguros(watsonResultado.input.text);
-    var lista_categorias=[{response_type:"option",title:"Por favor seleccione una categoria 😉😉",options: []}];
-    for(var i in categorias){
-      lista_categorias[0].options.push(categorias[i]);
+    for (var i in entidad){
+      if (entidad[i].entity == "TipoConsulta") {
+        var categorias = documentos.leerReglasTecniseguros(entidad[i].value);
+        var lista_categorias=[{response_type:"option",title:"Por favor seleccione una categoria 😉😉",options: []}];
+        for(var i in categorias){
+          lista_categorias[0].options.push(categorias[i]);
+        }
+      watsonResultado.output.generic=lista_categorias;    
+      }
     }
-    watsonResultado.output.generic=lista_categorias;
   }else if (watsonResultado.output.nodes_visited[0]=="node_7_1572302557648") {
-    
+    for(var i in entidad){
+      if(entidad[i].entity == "TipoConsulta"){
+        var soluciones = documentos.listarSoluciones(entidad[i].value,watsonResultado.input.text);
+        var lista_soluciones=[];
+        for(var i in soluciones){
+          lista_soluciones.push({response_type:"text", text:soluciones[i].text});
+        }
+        console.log(lista_soluciones);
+        watsonResultado.output.generic=lista_soluciones[watsonResultado.context.contador];
+      }
+    }
   }
 }
 

@@ -29,20 +29,15 @@ var validaciones={};
 
 }
 
-validaciones.listarSoluciones= function(tipo){
+validaciones.listarSoluciones= function(tipo,problema){
   var data=JSON.parse(fs.readFileSync("CATEGORIAS.json", 'utf-8'));
   var obj=[]
   for(var i in data){
-    if(data[i].TIPO==tipo.toUpperCase()){
+    if (data[i].TIPO == tipo.toUpperCase()) {
       for(var j in data[i].SOLUCIONES){
-        //console.log(data[i].SOLUCIONES)
-        obj.push({"label":data[i].SOLUCIONES[j].soluciones, "value": {
-          "input": {
-            "text": data[i].SOLUCIONES[j].soluciones
-          }
+        if (data[i].SOLUCIONES[j].PROBLEMA==problema) {
+          obj.push(data[i].SOLUCIONES[j].soluciones)
         }
-       })
-       //console.log(obj);
       }
     }
   }
