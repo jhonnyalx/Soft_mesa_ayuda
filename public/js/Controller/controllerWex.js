@@ -69,17 +69,13 @@ function decisionNodos(watsonResultado){
   console.log("=======");
   //RECONOCE HARDWARE
   if (watsonResultado.output.nodes_visited[0]=="node_1_1572035571673") {
-    for (var i in entidad){
-      if (entidad[i].entity == "TipoConsulta") {
-        var categorias = documentos.leerReglasTecniseguros(entidad[i].value);
+        var categorias = documentos.leerReglasTecniseguros(watsonResultado.context.tipo);
         var lista_categorias=[{response_type:"option",title:"Por favor seleccione una categoria 😉😉",options: []}];
         for(var i in categorias){
           lista_categorias[0].options.push(categorias[i]);
         }
-      watsonResultado.output.generic=lista_categorias;    
-      }
-    }
-  }else if (watsonResultado.output.nodes_visited[0]=="node_7_1572302557648") {
+      watsonResultado.output.generic=lista_categorias;
+  }else if (watsonResultado.output.nodes_visited[0]=="node_3_1572367833504") {
     for(var i in entidad){
       if(entidad[i].entity == "TipoConsulta"){
         var soluciones = documentos.listarSoluciones(entidad[i].value,watsonResultado.input.text);
