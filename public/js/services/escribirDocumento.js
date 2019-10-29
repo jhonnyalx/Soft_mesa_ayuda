@@ -19,14 +19,14 @@ var modelo=[
 
 escribir.crearTicket=function(datos){
     var gravedad="otro";
-    if(datos.prioridad==10){
-        gravedad="Impacto empresarial crítico (la producción o el servicio están inactivos)";
-    }else if(datos.prioridad==7){
-        gravedad="Impacto importante (algún sistema está inactivo)";
-    }else if(datos.prioridad==4){
-        gravedad="Impacto empresarial ";
-    }else if(datos.prioridad==1){
-        gravedad="Impacto mínimo (preguntas sobre procedimientos, problemas de menor importancia)";
+    if(datos.prioridad=="1 Impacto empresarial crítico (la producción o el servicio están inactivos)"){
+        gravedad="10";
+    }else if(datos.prioridad=="2 Impacto importante (algún sistema está inactivo)"){
+        gravedad="7";
+    }else if(datos.prioridad=="3 Impacto empresarial "){
+        gravedad="4";
+    }else if(datos.prioridad=="4 Impacto mínimo (preguntas sobre procedimientos, problemas de menor importancia)"){
+        gravedad="1";
     }
 
     try {
@@ -41,8 +41,8 @@ escribir.crearTicket=function(datos){
                 "numticket":"TICKET"+moment.now(),
                 "descripcion":"descrip",
                 "solucion":"solucion",
-                "Gravedad":gravedad,
-                "nivelGravedad":datos.prioridad.toString(),
+                "Gravedad":datos.prioridad,
+                "nivelGravedad":gravedad,
                 "fecha":moment().format("MMMM Do YYYY, h:mm:ss a")
             })
         }
