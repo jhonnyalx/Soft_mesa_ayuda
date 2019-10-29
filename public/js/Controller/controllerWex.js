@@ -54,6 +54,8 @@ function decisionWex(data){
       return validaciones.validarCedula(data.input);
     case "LISTA_CATEGORIAS":
        return documentos.leerReglasTecniseguros(data.input);
+    case "HARDWARE":
+      return documentos.listarSoluciones(data.bandera,data.input);
     default:
       break;
   }
@@ -75,7 +77,7 @@ function decisionNodos(watsonResultado){
           lista_categorias[0].options.push(categorias[i]);
         }
       watsonResultado.output.generic=lista_categorias;
-  }else if (watsonResultado.output.nodes_visited[0]=="node_3_1572367833504"||watsonResultado.output.nodes_visited[0]=="node_9_1572367888946") {
+  }/* else if (watsonResultado.output.nodes_visited[0]=="node_3_1572367833504"||watsonResultado.output.nodes_visited[0]=="node_9_1572367888946") {
     for(var i in entidad){
       if(entidad[i].entity == "TipoConsulta"){
         var soluciones = documentos.listarSoluciones(entidad[i].value,watsonResultado.input.text);
@@ -92,7 +94,7 @@ function decisionNodos(watsonResultado){
     }else{
       watsonResultado.output.generic[0]={response_type:"text", text:"GACIAS"};
     }  
-  }
+  } */
 }
 
 //ESCRIBIR DOCUMENTO
