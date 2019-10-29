@@ -85,8 +85,9 @@ function decisionNodos(watsonResultado){
         }
         if (watsonResultado.context.contador<lista_soluciones.length) {
           watsonResultado.output.generic[0]=lista_soluciones[watsonResultado.context.contador];
+          watsonResultado.output.generic.push({response_type:"text", text:"Se soluciono tu problema??"});
         }else{
-          watsonResultado.output.generic[0]={response_type:"text", text:"GACIAS"}
+          watsonResultado.output.generic[0]={response_type:"text", text:"GACIAS"};
         }        
       }
     }
