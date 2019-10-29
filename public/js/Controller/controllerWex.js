@@ -83,7 +83,11 @@ function decisionNodos(watsonResultado){
         for(var i in soluciones){
           lista_soluciones.push({response_type:"text", text:soluciones[i]});
         }
-        watsonResultado.output.generic=lista_soluciones[watsonResultado.context.contador];
+        if (watsonResultado.context.contador<lista_soluciones.length) {
+          watsonResultado.output.generic[0]=lista_soluciones[watsonResultado.context.contador];
+        }else{
+          watsonResultado.output.generic[0]={response_type:"text", text:"GACIAS"}
+        }        
       }
     }
   }
