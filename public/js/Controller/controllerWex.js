@@ -81,9 +81,8 @@ function decisionNodos(watsonResultado){
         var soluciones = documentos.listarSoluciones(entidad[i].value,watsonResultado.input.text);
         var lista_soluciones=[];
         for(var i in soluciones){
-          lista_soluciones.push({response_type:"text", text:soluciones[i].text});
+          lista_soluciones.push({response_type:"text", text:soluciones[i]});
         }
-        console.log(lista_soluciones);
         watsonResultado.output.generic=lista_soluciones[watsonResultado.context.contador];
       }
     }
