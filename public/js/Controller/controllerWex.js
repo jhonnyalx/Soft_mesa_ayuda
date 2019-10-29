@@ -75,22 +75,23 @@ function decisionNodos(watsonResultado){
           lista_categorias[0].options.push(categorias[i]);
         }
       watsonResultado.output.generic=lista_categorias;
-  }else if (watsonResultado.output.nodes_visited[0]=="node_3_1572367833504") {
+  }else if (watsonResultado.output.nodes_visited[0]=="node_3_1572367833504"||watsonResultado.output.nodes_visited[0]=="node_9_1572367888946") {
     for(var i in entidad){
       if(entidad[i].entity == "TipoConsulta"){
         var soluciones = documentos.listarSoluciones(entidad[i].value,watsonResultado.input.text);
         var lista_soluciones=[];
         for(var i in soluciones){
           lista_soluciones.push({response_type:"text", text:soluciones[i]});
-        }
-        if (watsonResultado.context.contador<lista_soluciones.length) {
-          watsonResultado.output.generic[0]=lista_soluciones[watsonResultado.context.contador];
-          watsonResultado.output.generic.push({response_type:"text", text:"Se soluciono tu problema??"});
-        }else{
-          watsonResultado.output.generic[0]={response_type:"text", text:"GACIAS"};
-        }        
+        }      
+        watsonResultado.context.soluciones = lista_soluciones; 
       }
     }
+    if (watsonResultado.context.contador<watsonResultado.context.soluciones.length){
+      watsonResultado.output.generic[0]=watsonResultado.context.soluciones[watsonResultado.context.contador];
+      watsonResultado.output.generic.push({response_type:"text", text:"Se soluciono tu problema??"});
+    }else{
+      watsonResultado.output.generic[0]={response_type:"text", text:"GACIAS"};
+    }  
   }
 }
 
