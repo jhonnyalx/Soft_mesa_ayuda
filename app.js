@@ -86,12 +86,12 @@ server.listen(appEnv.port, '0.0.0.0', function() {
   console.log("server starting on " + appEnv.url);
 });
 
+
 //Telegram
 bot.on('message', msg => {
-	//console.log(msg);
     Request.post({
         "headers": { "content-type": "application/json" },
-        "url": "https://chatcognitivo.herokuapp.com/mesaAyuda/llamadaWatson",
+        "url": "https://chatcognitivo.herokuapp.com/mesaAyuda/enviarMensaje",
         "body": JSON.stringify({
             "texto": msg.text,
             "id": msg.chat.id
@@ -104,8 +104,6 @@ bot.on('message', msg => {
  
 		var output=await JSON.parse(body).resWatson.output;
 		//var arreglo=[]
-		/* 
-		console.log(arreglo.length);*/
 		//console.log(await JSON.parse(body).resWatson); 
         for(var i in output.generic){
             if(output.generic[i].response_type=="text"){
@@ -128,5 +126,4 @@ bot.on('message', msg => {
         }
     });
   });
-
 

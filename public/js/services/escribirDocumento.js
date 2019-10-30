@@ -30,7 +30,7 @@ escribir.crearTicket=function(datos){
     }
 
     try {
-        var data=JSON.parse(fs.readFileSync("TICKETS.json", 'utf-8'));
+        var data=JSON.parse( fs.readFile("TICKETS.json", 'utf-8'));
         
     for(var i in data){
         if(data[i].TIPO==datos.tipo){
@@ -47,9 +47,9 @@ escribir.crearTicket=function(datos){
             })
         }
     }
-    fs.writeFileSync("TICKETS.json",JSON.stringify(data))
-    return data;
+    fs.writeFile("TICKETS.json",JSON.stringify(data))
     } catch (error) {
+        console.log(error);
     }
     
 
