@@ -56,6 +56,10 @@ function decisionWex(data){
        return documentos.leerReglasTecniseguros(data.input);
     case "HARDWARE":
       return documentos.listarSoluciones(data.bandera,data.input);
+    case "SOFTWARE":
+      return documentos.listarSoluciones(data.bandera,data.input);
+    case "RED":
+      return documentos.listarSoluciones(data.bandera,data.input);
     default:
       break;
   }
