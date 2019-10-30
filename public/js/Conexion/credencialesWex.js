@@ -21,7 +21,7 @@ var tramos={
         user:"" ,//"amin",
         pwd:"" //"123"
     },telegram:{
-        key:"871114400:AAFdQ_WFJUZnKETOljraGfdtUxZakzzbDlA"
+        key:"994088472:AAHtmVBoEQktYUiLJTceZ5D9VXH0vAfunZc"
     },facebook:{
         token:"EAADtIPntW1wBACBqt1XDo3EPygcN9C8M1vZA6rYJVgR4scJkKvemJ3CoICdti0nzZC34qL4wmh3PNKJFZAc0ko8iFZBzM1uMi7xUlnI9W2GbjtC6Y8SZAPosAqF5PYOmd0ly9tz3lZBjZAI4eXeXZB6GnybI46DDCMV8kLvzyTpm2VusXWIGIxIK"
     }
