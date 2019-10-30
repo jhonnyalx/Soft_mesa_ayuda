@@ -91,7 +91,7 @@ server.listen(appEnv.port, '0.0.0.0', function() {
 bot.on('message', msg => {
     Request.post({
         "headers": { "content-type": "application/json" },
-        "url": "https://chatcognitivo.herokuapp.com/mesaAyuda/enviarMensaje",
+        "url": "https://chatcognitivo.herokuapp.com/mesaAyuda/llamadaWatson",
         "body": JSON.stringify({
             "texto": msg.text,
             "id": msg.chat.id
