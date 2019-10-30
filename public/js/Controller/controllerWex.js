@@ -18,7 +18,7 @@ var assistant = new watson.AssistantV1({
 controllerWatson.postllamadaWatson =async(req,res)=>{
   var mensaje=req.body.texto;
   var id=req.body.id;
-  //console.log(storage.getItem(id));
+  console.log(storage.getItem(id));
   var context=new modelWatsonResultado(null,null,null,null,null);
     if(storage.getItem(id)!=undefined){
       context=storage.getItem(id);
@@ -62,13 +62,14 @@ function decisionWex(data){
     case "RED":
       return documentos.listarSoluciones(data.bandera,data.input);
     case "CONSULTAR":
-      return documentos.consultarTickets(data.input);
+      return documentos.consultarTickets(data.bandera,data.input);
     default:
       break;
   }
 }
 
 async function decisionNodos(watsonResultado){
+  
   var entidad=watsonResultado.entities;
   var intencion=watsonResultado.intents;
   console.log("=======");
@@ -88,7 +89,24 @@ async function decisionNodos(watsonResultado){
     if(watsonResultado.context.negativos!=undefined && watsonResultado.context.negativos!=null){
      await escribir.crearTicket(watsonResultado.context);
     }
+  }else if(watsonResultado.output.nodes_visited[0]=="node_115_1572447317978"){
+    if(watsonResultado.context.consultado!=undefined){
+      var tickets =watsonResultado.context.consultado.respuesta;
+        var lista_categorias=[{response_type:"option",title:"Por favor elige un ticket 😉😉",options: []}];
+        for(var i in tickets){
+          var options ={"label":tickets[i].numticket, "value": {
+            "input": {
+              "text": tickets[i].numticket
+            }
+          }
+         }
+          lista_categorias[0].options.push(options);
+        }
+        watsonResultado.output.generic=lista_categorias;
+    }
   }
+  console.log("=======RESULTADO WATSON");
+  console.log(watsonResultado);
 }
 
 
