@@ -65,7 +65,7 @@ function decisionWex(data){
   }
 }
 
-function decisionNodos(watsonResultado){
+async function decisionNodos(watsonResultado){
   var entidad=watsonResultado.entities;
   var intencion=watsonResultado.intents;
   console.log("=======");
@@ -74,32 +74,21 @@ function decisionNodos(watsonResultado){
   //console.log(watsonResultado);
   console.log("=======");
   //RECONOCE HARDWARE
-  if (watsonResultado.output.nodes_visited[0]=="node_1_1572035571673") {
+  if (watsonResultado.output.nodes_visited[0]=="node_1_1572035571673" || watsonResultado.output.nodes_visited[0]=="node_2_1572036902413" || watsonResultado.output.nodes_visited[0]=="node_7_1572036957797" ) {
         var categorias = documentos.leerReglasTecniseguros(watsonResultado.context.tipo);
         var lista_categorias=[{response_type:"option",title:"Por favor seleccione una categoria 😉😉",options: []}];
         for(var i in categorias){
           lista_categorias[0].options.push(categorias[i]);
         }
       watsonResultado.output.generic=lista_categorias;
-  }/* else if (watsonResultado.output.nodes_visited[0]=="node_3_1572367833504"||watsonResultado.output.nodes_visited[0]=="node_9_1572367888946") {
-    for(var i in entidad){
-      if(entidad[i].entity == "TipoConsulta"){
-        var soluciones = documentos.listarSoluciones(entidad[i].value,watsonResultado.input.text);
-        var lista_soluciones=[];
-        for(var i in soluciones){
-          lista_soluciones.push({response_type:"text", text:soluciones[i]});
-        }      
-        watsonResultado.context.soluciones = lista_soluciones; 
-      }
+  }else if(watsonResultado.output.nodes_visited[0]=="slot_6_1572383730505"){
+    if(watsonResultado.context.negativos!=undefined && watsonResultado.context.negativos!=null){
+     console.log( await escribir.crearTicket(watsonResultado.context));
     }
-    if (watsonResultado.context.contador<watsonResultado.context.soluciones.length){
-      watsonResultado.output.generic[0]=watsonResultado.context.soluciones[watsonResultado.context.contador];
-      watsonResultado.output.generic.push({response_type:"text", text:"Se soluciono tu problema??"});
-    }else{
-      watsonResultado.output.generic[0]={response_type:"text", text:"GACIAS"};
-    }  
-  } */
+  }
 }
+
+
 
 //ESCRIBIR DOCUMENTO
 
