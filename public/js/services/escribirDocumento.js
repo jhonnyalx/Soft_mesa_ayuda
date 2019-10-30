@@ -39,15 +39,15 @@ escribir.crearTicket=function(datos){
                 {
                 "ci":datos.cedula.toString(),
                 "numticket":"TICKET"+moment.now(),
-                "descripcion":"descrip",
-                "solucion":"solucion",
+                "descripcion":datos.descripcion,
+                "solucion":datos.solucion,
                 "Gravedad":datos.prioridad,
                 "nivelGravedad":gravedad,
                 "fecha":moment().format("MMMM Do YYYY, h:mm:ss a")
             })
         }
     }
-    //fs.writeFileSync("TICKETS.json",JSON.stringify(data))
+    fs.writeFileSync("TICKETS.json",JSON.stringify(data))
     return data;
     } catch (error) {
     }
