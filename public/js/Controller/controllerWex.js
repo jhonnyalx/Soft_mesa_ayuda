@@ -62,7 +62,7 @@ function decisionWex(data){
     case "RED":
       return documentos.listarSoluciones(data.bandera,data.input);
     case "CONSULTAR":
-      return documentos.consultarTickets(data.bandera,data.input);
+      return documentos.consultarTickets(data.input);
     default:
       break;
   }
