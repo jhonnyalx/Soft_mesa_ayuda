@@ -105,7 +105,6 @@ bot.on('message', msg => {
  
 		var output=await JSON.parse(body).resWatson.output;
 		//var arreglo=[]
-
 		//console.log(await JSON.parse(body).resWatson); 
         for(var i in output.generic){
             if(output.generic[i].response_type=="text"){
@@ -130,4 +129,4 @@ bot.on('message', msg => {
   });
 
 
-  */
+*/
