@@ -49,6 +49,7 @@ controllerWatson.postEnviarMensajeWex =async(req,res)=>{
 }
 
 function decisionWex(data){
+  console.log(data);
   switch (data.bandera) {
     case "AUTENTIFICACION":
       return validaciones.validarCedula(data.input);
@@ -60,12 +61,14 @@ function decisionWex(data){
       return documentos.listarSoluciones(data.bandera,data.input);
     case "RED":
       return documentos.listarSoluciones(data.bandera,data.input);
+    case "CONSULTAR":
+      return documentos.consultarTickets(data.bandera,data.input);
     default:
       break;
   }
 }
 
-function decisionNodos(watsonResultado){
+async function decisionNodos(watsonResultado){
   var entidad=watsonResultado.entities;
   var intencion=watsonResultado.intents;
   console.log("=======");
@@ -74,113 +77,27 @@ function decisionNodos(watsonResultado){
   //console.log(watsonResultado);
   console.log("=======");
   //RECONOCE HARDWARE
-  if (watsonResultado.output.nodes_visited[0]=="node_1_1572035571673") {
+  if (watsonResultado.output.nodes_visited[0]=="node_1_1572035571673" || watsonResultado.output.nodes_visited[0]=="node_2_1572036902413" || watsonResultado.output.nodes_visited[0]=="node_7_1572036957797" ) {
         var categorias = documentos.leerReglasTecniseguros(watsonResultado.context.tipo);
         var lista_categorias=[{response_type:"option",title:"Por favor seleccione una categoria 😉😉",options: []}];
         for(var i in categorias){
           lista_categorias[0].options.push(categorias[i]);
         }
       watsonResultado.output.generic=lista_categorias;
-  }/* else if (watsonResultado.output.nodes_visited[0]=="node_3_1572367833504"||watsonResultado.output.nodes_visited[0]=="node_9_1572367888946") {
-    for(var i in entidad){
-      if(entidad[i].entity == "TipoConsulta"){
-        var soluciones = documentos.listarSoluciones(entidad[i].value,watsonResultado.input.text);
-        var lista_soluciones=[];
-        for(var i in soluciones){
-          lista_soluciones.push({response_type:"text", text:soluciones[i]});
-        }      
-        watsonResultado.context.soluciones = lista_soluciones; 
-      }
+  }else if(watsonResultado.output.nodes_visited[0]=="slot_6_1572383730505" || watsonResultado.output.nodes_visited[0]=="slot_6_1572389344742" || watsonResultado.output.nodes_visited[0]=="slot_21_1572390743247" ){
+    if(watsonResultado.context.negativos!=undefined && watsonResultado.context.negativos!=null){
+     await escribir.crearTicket(watsonResultado.context);
     }
-    if (watsonResultado.context.contador<watsonResultado.context.soluciones.length){
-      watsonResultado.output.generic[0]=watsonResultado.context.soluciones[watsonResultado.context.contador];
-      watsonResultado.output.generic.push({response_type:"text", text:"Se soluciono tu problema??"});
-    }else{
-      watsonResultado.output.generic[0]={response_type:"text", text:"GACIAS"};
-    }  
-  } */
-}
-
-//ESCRIBIR DOCUMENTO
-
-var jsonWatson={
-  "watsonResultado": {
-      "intents": [],
-      "entities": [
-          {
-              "entity": "TipoConsulta",
-              "location": [
-                  0,
-                  8
-              ],
-              "value": "hardware",
-              "confidence": 1
-          }
-      ],
-      "input": {
-          "text": "hardware"
-      },
-      "output": {
-          "generic": [
-              {
-                  "response_type": "text",
-                  "text": "GACIAS"
-              }
-          ],
-          "text": [],
-          "nodes_visited": [
-              "node_3_1572367833504"
-          ],
-          "log_messages": []
-      },
-      "context": {
-          "cedula": 1725002206,
-          "prioridad": "1 Impacto empresarial crítico (la producción o el servicio están inactivos)",
-          "tipo": "HARDWARE",
-          "problema": null,
-          "soluciones": [],
-          "conversation_id": "83e557ea-ee28-4ded-9b3b-b7d296245daa",
-          "system": {
-              "initialized": true,
-              "dialog_stack": [
-                  {
-                      "dialog_node": "node_3_1572367833504"
-                  }
-              ],
-              "dialog_turn_counter": 7,
-              "dialog_request_counter": 7,
-              "_node_output_map": {
-                  "Bienvenido": {
-                      "0": [
-                          0
-                      ]
-                  },
-                  "handler_1_1572285326655": {
-                      "0": [
-                          0
-                      ]
-                  },
-                  "response_9_1572289552449": {
-                      "0": [
-                          0
-                      ]
-                  }
-              }
-          },
-          "docs": "doc:doc",
-          "validacionCedula": {
-              "respuesta": "Cedula Correcta"
-          },
-          "contador": 0
-      }
   }
 }
 
 
 
+
+
 controllerWatson.pruebas=async (req,res)=>{
     
-    res.send(await escribir.crearTicket(jsonWatson.watsonResultado.context));
+    res.send(await documentos.consultarTickets("HARDWARE","12345679890"));
 }
 
 

@@ -44,4 +44,25 @@ validaciones.listarSoluciones= function(tipo,problema){
   return obj;
 }
 
+
+validaciones.consultarTickets=function(datos){
+  
+  console.log("extremo");
+  console.log(datos);
+  var data=JSON.parse(fs.readFileSync("TICKETS.json", 'utf-8'));
+  
+  var obj=[]
+  for(var i in data){
+    if (data[i].TIPO == datos.tipo.toUpperCase()){
+      for(var j in data[i].RESULTADO){
+        if(data[i].RESULTADO[j].ci==datos.cedula.toString()){
+          obj=data[i].RESULTADO[j];
+        }
+      }  
+    }
+  }
+  
+  return obj;
+}
+
 module.exports=validaciones
