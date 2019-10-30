@@ -2,7 +2,7 @@
     {
         "TIPO":"RED",
         "SOLUCIONES":[
-    {"PROBLEMA":"No tengo conexión a internet",
+    {"PROBLEMA":"Sin conexión a internet",
         "soluciones":["Paso 1:asegurarnos que no haya ningún problema con el router o con nuestro proveedor de Internet\nPaso 2:ir a Configuración > Actualización y seguridad > Solucionar problemas",
             "Paso 1: Abrimos un símbolo del sistema con permisod de administrador\nPaso 2:anzamos los siguiente comando de forma consecutiva: netsh winsock reset, netsh int ip reset, ipconfig /release, ipconfig /renew y ipconfig /flushdns.",
             "Paso 1: Abrir el Administrador de dispositivos\nPaso 2: ir a Adaptadores de red para buscar el nombre de nuestra tarjeta\nPaso 3:Hacemos clic con el botón derecho del ratón y seleccionamos la opción Actualizar controlador > Buscar software de controlador actualizdo automáticamente\nPaso 4:Es probable que después de completar el proceso sea necesario reiniciar el equipo"]},
@@ -20,16 +20,16 @@
     {"PROBLEMA":"La pantalla se pone en negro",
         "soluciones":["Paso 1: Comprueba el cable del monitor\nPaso 2:Revisa la configuración del ahorro de energía\nPaso 4:Si no es esto, prueba el monitor en otra computadora",
             "Paso 1: Arranca en modo seguro\nPaso 2:Actualiza los drivers de la tarjeta gráfica o de vídeo"]},
-    {"PROBLEMA":"El CPU no enciende",
+    {"PROBLEMA":"El CPU sin encender",
         "soluciones":["Paso 1: Revisa los cables y conexiones\nPaso 2: Comprueba que haya corriente eléctrica\nPaso 3:Espera un tiempo y enciéndelo nuevamente",
             "Paso 1: Revisa o cambia la fuente de alimentación "]}
     ]},
     {
         "TIPO":"SOFTWARE",
         "SOLUCIONES":[
-    {"PROBLEMA":"Windows no ejecuta el programa y tampoco devuelve ningún error",
+    {"PROBLEMA":"Windows sigue sin abrir el programa y tampoco devuelve errores",
         "soluciones":["Paso 1: Abrir el administrador de tareas. Podemos hacerlo clicando con el botón derecho sobre la barra de inicio de Windows y seleccionando Iniciar el Administrador de tareas\nPaso 2:En la pestaña Procesos dentro del administrador buscaremos el proceso que corresponde al programa que no se ejecuta. Es decir, el nombre de la aplicación bloqueada.\nPaso 3: En ocasiones, el programa puede aparecer repetido. Esto es debido a que hemos intentado abrir el programa varias veces, y al estar bloqueado, se crea una especie de cuello de botella.\nPaso 4: Pulsamos con el botón derecho del ratón en el nombre del programa y seleccionar Finalizar tarea."]},
-    {"PROBLEMA":"El archivo no se puede abrir porque hay problemas con el contenido WORD",
+    {"PROBLEMA":"Problemas con el contenido de un archivo",
         "soluciones":["Paso 1: Abra Word\nPaso 2:  En el menú Archivo o en el botón Microsoft Office, haga clic en Abrir\n Paso 3: En el cuadro de diálogo, de clic para seleccionar el archivo de Word en blanco.\nPaso 4:Haga clic en la flecha hacia abajo en el botón Abrir, y luego haga clic en Abrir y Reparar",
             "Paso 1:  Envíe el archivo de Word dañado a su cuenta de Gmail.\nPaso 2: Haga clic en el archivo adjunto para abrirlo en la vista previa de Google Docs.\nPaso 3: Haga clic en 'Abrir con Google Docs'. El documento debe abrirse y verse.\nPaso 4: Haga clic en Archivo > Descargar como > Microsoft Word (.docx)\nPaso 5:Utilice Microsoft Word para abrir el documento que acaba de descargar."]}
     ]}
