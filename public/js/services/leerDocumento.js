@@ -56,12 +56,13 @@ validaciones.consultarTickets=function(datos){
     if (data[i].TIPO == datos.tipo.toUpperCase()){
       for(var j in data[i].RESULTADO){
         if(data[i].RESULTADO[j].ci==datos.cedula.toString()){
-          obj=data[i].RESULTADO[j];
+          obj.push(data[i].RESULTADO[j]);
         }
       }  
     }
   }
-  
+  console.log("data");
+  console.log(obj);
   return obj;
 }
 
